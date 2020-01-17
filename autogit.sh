@@ -1,1 +1,53 @@
 #This script should recursively traverse through the directories and commit every file
+
+#!/bin/bash
+if [ -z "$1" ]; then
+echo "No file provided" >&2
+exit 1
+fi
+
+function func()
+{
+file_name=$1
+if [ -d `realpath $file_name` ]; then
+
+cd `realpath $file_name`
+
+array=(`ls | uniq `)
+
+len=${#array[*]}
+i=0
+while [ $i -lt $len ]; do
+
+echo "${array[$i]}"
+
+func ${array[$i]}
+
+
+let i++
+done
+
+fi
+
+
+
+if [ -f `realpath $file_name` ]; then
+test= git add $file_name
+git commit -m "Automating commit"
+
+if [ "$test" == "1" ]; then
+echo "Bad signature: gpg not executed properly" >&2
+exit 1
+fi
+
+
+if [ "$test" == "2" ]; then
+echo "unexpected error: gpg not executed properly" >&2
+exit 1
+fi
+fi
+
+
+}
+
+func $1
