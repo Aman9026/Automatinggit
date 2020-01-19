@@ -34,6 +34,9 @@ fi
 if [ -f `realpath $file_name` ]; then
 test= git add $file_name
 git commit -m "Automating commit"
+echo -e "\n#this was automatically comitted" >> $file_name
+git add $file_name
+git commit -m "Automated comment addition"
 
 if [ "$test" == "1" ]; then
 echo "Not executed properly" >&2
