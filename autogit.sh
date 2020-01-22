@@ -24,8 +24,12 @@ i=0
 while [ $i -lt $len ]; do
 
 git add ${arry[$i]}
-git commit -m "${arry[$i]} is Automatically committed"
+test= git commit -m "${arry[$i]} is Automatically committed"
 
+if [ "$test" == "1" ]; then
+echo "Not executed properly" >&2
+exit 1
+fi
 
 
 let i++
