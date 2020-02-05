@@ -25,6 +25,7 @@ while [ $i -lt $len ]; do
 
 git add ${arry[$i]}
 test= git commit -m "${arry[$i]} is Automatically committed"
+sleep 60
 
 if [ "$test" == "1" ]; then
 echo "Not executed properly" >&2
