@@ -1,4 +1,4 @@
-#This script should recursively traverse through the directories and commit every file
+#This script should traverse through the directories and commit every file
 
 #!/bin/bash
 
